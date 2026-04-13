@@ -78,12 +78,30 @@ On repeat runs, it checks `last_commit_synced` in `.manifest.json` and only proc
 3. Only open page bodies when the index pass can't answer
 4. Return a synthesized answer with `[[wikilink]]` citations
 
+## Visibility Tags (optional)
+
+Pages can carry a `visibility/` tag to mark their intended reach. **This is entirely optional** — untagged pages behave exactly as they always have (visible everywhere). The system stays single-vault, single source of truth.
+
+| Tag | Meaning |
+|---|---|
+| *(no tag)* | Same as `visibility/public` — visible in all modes |
+| `visibility/public` | Explicitly public — visible in all modes |
+| `visibility/internal` | Team-only — excluded when querying in filtered mode |
+| `visibility/pii` | Sensitive data — excluded when querying in filtered mode |
+
+**Filtered mode** is opt-in, triggered by phrases like "public only", "user-facing answer", "no internal content", or "as a user would see it" in a query. Default mode shows everything.
+
+`visibility/` tags are **system tags** — they don't count toward the 5-tag limit and are listed separately from domain/type tags in the taxonomy.
+
+See `wiki-query` and `wiki-export` skills for how the filter is applied.
+
 ## Core Principles
 
 - **Compile, don't retrieve.** The wiki is pre-compiled knowledge. Update existing pages — don't append or duplicate.
 - **Track everything.** Update `.manifest.json` after ingesting, `index.md` and `log.md` after any operation.
 - **Connect with `[[wikilinks]]`.** Every page should link to related pages. This is what makes it a knowledge graph, not a folder of files.
 - **Frontmatter is required.** Every wiki page needs: `title`, `category`, `tags`, `sources`, `created`, `updated`.
+- **Single source of truth.** Visibility tags shape how content is surfaced — they don't duplicate or separate it.
 
 ## Architecture Reference
 

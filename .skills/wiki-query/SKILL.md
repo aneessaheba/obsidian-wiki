@@ -18,6 +18,21 @@ You are answering questions against a compiled Obsidian wiki, not raw source doc
 1. Read `~/.obsidian-wiki/config` to get `OBSIDIAN_VAULT_PATH` (works from any project). Fall back to `.env` if you're inside the obsidian-wiki repo.
 2. Read `$OBSIDIAN_VAULT_PATH/index.md` to understand the wiki's scope and structure
 
+## Visibility Filter (optional)
+
+By default, **all pages are returned** regardless of visibility tags. This preserves existing behavior — nothing changes unless the user asks for it.
+
+If the user's query includes phrases like **"public only"**, **"user-facing"**, **"no internal content"**, **"as a user would see it"**, or **"exclude internal"**, activate **filtered mode**:
+
+- Build a **blocked tag set**: `{visibility/internal, visibility/pii}`
+- In the Index Pass (Step 2), skip any candidate whose frontmatter tags contain a blocked tag
+- In Section/Full Read passes (Steps 3–4), do not read or cite any blocked page
+- Synthesize the answer **only from allowed pages** — do not mention that excluded pages exist
+
+Pages with no `visibility/` tag, or tagged `visibility/public`, are always included.
+
+In filtered mode, note the filter in the Step 6 log entry: `mode=filtered`.
+
 ## Retrieval Protocol
 
 **Follow the Retrieval Primitives table in `llm-wiki/SKILL.md`.** Reading is the dominant cost of this skill — use the cheapest primitive that answers the question and escalate only when it can't. Never jump straight to full-page reads.
@@ -103,7 +118,7 @@ Compose your answer from wiki content:
 
 Append to `log.md`:
 ```
-- [TIMESTAMP] QUERY query="the user's question" result_pages=N mode=normal|index_only escalated=true|false
+- [TIMESTAMP] QUERY query="the user's question" result_pages=N mode=normal|index_only|filtered escalated=true|false
 ```
 
 ## Answer Format
