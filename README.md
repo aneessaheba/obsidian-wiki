@@ -414,13 +414,11 @@ I used this framework to build a personal knowledge base seeded with 50+ sources
 
 After the initial 3 sources (Karpathy gist, Attention Is All You Need, RAG paper) — first 8 pages, connections forming:
 
-![Initial graph — 8 pages](Screenshot%202026-04-16%20at%205.09.09%20PM.png)
+![Initial graph — 8 pages](graph-initial-8-pages.png)
 
 After ingesting all 50+ sources — 52 pages, 22 concepts, 21 references, 5 entities, 2 synthesis pages:
 
-![Full graph — 52 pages](Screenshot%202026-04-16%20at%205.35.40%20PM.png)
-
-> Screenshots are local only and not included in the repository. Clone and run the framework to build your own vault.
+![Full graph — 52 pages](graph-full-52-pages.png)
 
 ### Vault structure after ingest
 

@@ -3,7 +3,7 @@
 *.pyc
 __pycache__/
 
-# Screenshots — local only, referenced in README but not pushed
+# Raw macOS screenshots — not pushed
 Screenshot*.png
 Screenshot*.jpg
 
