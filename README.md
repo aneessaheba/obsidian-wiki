@@ -388,6 +388,54 @@ claude
 
 Both skills follow the same Karpathy pattern as everything else. If a concept page already exists in the vault, it merges into it. Everything gets cross-linked with `[[wikilinks]]`, tracked in `.manifest.json`, and logged.
 
+---
+
+## My Wiki — What I Built
+
+I used this framework to build a personal knowledge base seeded with 50+ sources across ML/AI, data engineering, systems design, and software wisdom.
+
+### What I ingested
+
+**Foundational ML/AI papers** — Attention Is All You Need, BERT, GPT-3, InstructGPT, LLaMA/LLaMA 2, LoRA, QLoRA, ResNet, Vision Transformer, RAG (Lewis 2020), RAG Survey 2023, Self-RAG
+
+**Karpathy writing** — Software 2.0, The Unreasonable Effectiveness of RNNs, A Recipe for Training Neural Networks
+
+**Data engineering** — Jay Kreps' "The Log", Databricks Lakehouse, Uber exactly-once ad event processing
+
+**MLOps** — Hidden Technical Debt in ML Systems (Sculley et al.), CD4ML (Fowler), Real-Time ML (Chip Huyen), LLM Engineering
+
+**Paul Graham essays** — How to Get Startup Ideas, Do Things That Don't Scale, How to Make Wealth, What I Worked On, How to Think for Yourself
+
+**Software classics** — The Law of Leaky Abstractions (Spolsky), Never Rewrite from Scratch (Spolsky), Teach Yourself Programming in Ten Years (Norvig)
+
+**Deep dives** — The Transformer Family v2 (Lilian Weng), Prompt Engineering (Lilian Weng), Understanding LSTMs (Colah), Augmented RNNs (Distill), The AI Revolution (Wait But Why)
+
+### The knowledge graph
+
+After the initial 3 sources (Karpathy gist, Attention Is All You Need, RAG paper) — first 8 pages, connections forming:
+
+![Initial graph — 8 pages](Screenshot%202026-04-16%20at%205.09.09%20PM.png)
+
+After ingesting all 50+ sources — 52 pages, 22 concepts, 21 references, 5 entities, 2 synthesis pages:
+
+![Full graph — 52 pages](Screenshot%202026-04-16%20at%205.35.40%20PM.png)
+
+> Screenshots are local only and not included in the repository. Clone and run the framework to build your own vault.
+
+### Vault structure after ingest
+
+```
+my-wiki/
+├── concepts/          22 pages  (rlhf, transformer-architecture, RAG, LSTM, data-lakehouse, ...)
+├── references/        21 pages  (attention-is-all-you-need, bert, gpt-3, lora, resnet, ...)
+├── entities/           5 pages  (andrej-karpathy, paul-graham, joel-spolsky, chip-huyen, lilian-weng)
+├── synthesis/          2 pages  (llm-production-engineering, the-ml-stack)
+├── index.md                     master catalog of all pages
+└── .manifest.json               tracks every ingested source + pages produced
+```
+
+---
+
 ## Contributing
 
 This is early. The skills work but there's a lot of room to make them smarter — better cross-referencing, smarter deduplication, handling larger vaults, new ingest sources. If you've been thinking about this problem or have a workflow that could be a skill, PRs are welcome.
